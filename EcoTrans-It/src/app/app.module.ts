@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  * Angular Material imports
  */
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -26,6 +27,8 @@ import { MainComponent } from './main/main.component';
  */
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ContactDialogComponent } from './contact-dialog/contact-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,15 @@ import { ContactDialogComponent } from './contact-dialog/contact-dialog.componen
     ContactDialogComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     // GoogleChartsModule,
+    HttpClientModule,
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatIconModule,
     MatToolbarModule,
   ],

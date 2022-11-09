@@ -1,1 +1,14 @@
-<p>contact-dialog works!</p>
+
+<!-- <mat-icon fontIcon="close" (click)="close()" style="align-content: flex-end;"></mat-icon> -->
+<h1 mat-dialog-title>Contacter {{ message.to }}</h1>
+<div mat-dialog-content>
+  <p>Ajouter un message</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Votre message</mat-label>
+    <input matInput [(ngModel)]="message.message" required="true">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="secondary" (click)="cancel()">Annuler</button>
+  <button mat-button color="primary" [mat-dialog-close]="contactManager(message)" cdkFocusInitial>Envoyer</button>
+</div>
