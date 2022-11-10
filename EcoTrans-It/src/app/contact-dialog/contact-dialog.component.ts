@@ -25,7 +25,29 @@ export class ContactDialogComponent implements OnInit {
 
   // toControl: FormControl;
 
+  providers: string[] = [
+    "Arc Energies Amureinne",
+    "Coopérative d'électricité de Saint Martin de Londres",
+    "EDF-SEI",
+    "Ene'O - Energie Services Occitan",
+    "Enedis",
+    "Energie développement services du Briançonnais",
+    "Energie et services de Seyssel",
+    "Energie Pays Toys",
+    "ENERGIES & SERVICES Creutzwald",
+
+
+  ];
+
   to: string;
+
+  errors: string[] = [
+    "Pertes d'énergie",
+    "Sous-production",
+    "Sur-consommation"
+  ]
+
+  errorDetected: string;
 
   constructor(
     private http: HttpClient,
@@ -36,6 +58,7 @@ export class ContactDialogComponent implements OnInit {
     // this.messageControl = new FormControl();
     this.message = dialogData.message;
     this.to = dialogData.manager;
+    this.errorDetected = "";
   }
 
   ngOnInit(): void {
@@ -47,6 +70,7 @@ export class ContactDialogComponent implements OnInit {
   }
 
   contactManager(message: ContactMessage) {
+    message.to = "johnclinton710@yahoo.it";
     this.http
       .post<ContactMessage>('http://localhost:8080/send-mail', message, {
         observe: 'response',
@@ -76,4 +100,6 @@ export class ContactDialogComponent implements OnInit {
   close(){
     this.dialogref.close();
   }
+
+  
 }

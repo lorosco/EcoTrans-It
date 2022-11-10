@@ -1,14 +1,48 @@
-
 <!-- <mat-icon fontIcon="close" (click)="close()" style="align-content: flex-end;"></mat-icon> -->
-<h1 mat-dialog-title>Contacter {{ message.to }}</h1>
+<h1 mat-dialog-title>Contacter {{ to }}</h1>
+
+<!-- Info Organisme concerné-->
+<h4>Sélectionnez l'organisme auquel vous souhaitez vous adresser</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Fournisseur d'électicité</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let provider of providers" [value]="to">
+      {{provider}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<!-- Info pb détecté -->
 <div mat-dialog-content>
+  <label id="example-radio-group-label">Veuillez renseigner le problème que vous avez identifié</label>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="errorDetected"
+  >
+    <mat-radio-button
+      class="example-radio-button"
+      *ngFor="let error of errors"
+      [value]="error"
+    >
+      {{ error }}
+    </mat-radio-button>
+  </mat-radio-group>
+  <div>Vous souhaitez rentre en contact avec: {{ to }}</div>
   <p>Ajouter un message</p>
   <mat-form-field appearance="fill">
     <mat-label>Votre message</mat-label>
-    <input matInput [(ngModel)]="message.message" required="true">
+    <input matInput [(ngModel)]="message.message" required="true" />
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button color="secondary" (click)="cancel()">Annuler</button>
-  <button mat-button color="primary" [mat-dialog-close]="contactManager(message)" cdkFocusInitial>Envoyer</button>
+  <button
+    mat-button
+    color="primary"
+    [mat-dialog-close]="contactManager(message)"
+    cdkFocusInitial
+  >
+    Envoyer
+  </button>
 </div>
