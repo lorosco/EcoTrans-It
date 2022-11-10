@@ -25,6 +25,10 @@ export class ContactDialogComponent implements OnInit {
 
   // toControl: FormControl;
 
+  contactSuccess: boolean;
+
+  contactError: boolean;
+
   providers: string[] = [
     "Arc Energies Amureinne",
     "Coopérative d'électricité de Saint Martin de Londres",
@@ -59,10 +63,12 @@ export class ContactDialogComponent implements OnInit {
     this.message = dialogData.message;
     this.to = dialogData.manager;
     this.errorDetected = "";
+    this.contactError = false;
+    this.contactSuccess = true;
   }
 
   ngOnInit(): void {
-    console.log(this.to,"debug dialog data from main")
+    console.log(this.to,"debug dialog data from main");
   }
 
   displayMessageSuccess(contactSuccess: boolean) {
@@ -72,7 +78,7 @@ export class ContactDialogComponent implements OnInit {
   contactManager(message: ContactMessage) {
     message.to = "johnclinton710@yahoo.it";
     this.http
-      .post<ContactMessage>('http://localhost:8080/send-mail', message, {
+      .post<ContactMessage>('http://localhost:80/send-mail', message, {
         observe: 'response',
       })
       .pipe(
