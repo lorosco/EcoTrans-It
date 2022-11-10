@@ -43,7 +43,7 @@ export class ContactDialogComponent implements OnInit {
 
   ];
 
-  to: string;
+  to = new FormControl('');
 
   errors: string[] = [
     "Pertes d'énergie",
@@ -61,7 +61,7 @@ export class ContactDialogComponent implements OnInit {
   ) {
     // this.messageControl = new FormControl();
     this.message = dialogData.message;
-    this.to = dialogData.manager;
+    // this.to = dialogData.manager;
     this.errorDetected = "";
     this.contactError = false;
     this.contactSuccess = true;
@@ -81,17 +81,17 @@ export class ContactDialogComponent implements OnInit {
       .post<ContactMessage>('http://192.168.1.75:8080/send-mail', message, {
         observe: 'response',
       })
-      .pipe(
-        map((res) => {
-          console.log(res);
-          if (res.ok) {
-            this.displayMessageSuccess(true);
-          } else {
-            this.displayMessageSuccess(false);
-            console.log('ERROR failed to send message', message, res);
-          }
-        })
-      );
+      // .pipe(
+      //   map((res) => {
+      //     console.log(res);
+      //     if (res.ok) {
+      //       this.displayMessageSuccess(true);
+      //     } else {
+      //       this.displayMessageSuccess(false);
+      //       console.log('ERROR failed to send message', message, res);
+      //     }
+      //   })
+      // );
   }
 
   cancel(){
