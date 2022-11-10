@@ -78,7 +78,7 @@ export class ContactDialogComponent implements OnInit {
   contactManager(message: ContactMessage) {
     message.to = "johnclinton710@yahoo.it";
     this.http
-      .post<ContactMessage>('http://localhost:80/send-mail', message, {
+      .post<ContactMessage>('http://192.168.1.75:8080/send-mail', message, {
         observe: 'response',
       })
       .pipe(
